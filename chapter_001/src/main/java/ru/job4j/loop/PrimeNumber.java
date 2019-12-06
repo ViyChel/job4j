@@ -13,9 +13,4 @@ public class PrimeNumber {
         }
         return count;
     }
-
-    public static void main(String[] args) {
-        PrimeNumber primeNumber = new PrimeNumber();
-        primeNumber.calc(5);
-    }
 }
