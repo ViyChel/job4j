@@ -6,7 +6,6 @@ public class SqArea {
         double multiplier = k;
         double height = perimeter / (2 * (multiplier + 1));
         double rectangleArea = height * height * multiplier;
-
         return rectangleArea;
     }
 
