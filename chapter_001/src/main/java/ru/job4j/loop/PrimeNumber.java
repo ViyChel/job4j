@@ -11,6 +11,7 @@ public class PrimeNumber {
                 count++;
             }
         }
+
         return count;
     }
 }
