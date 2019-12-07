@@ -3,6 +3,6 @@
  *
  * @author Vitaly Yagufarov (for.viy@gmail.com)
  * @version $Id$
- * @since 0.1
+ * @since 07.12.2019
  */
 package ru.job4j.calculator;
