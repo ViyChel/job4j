@@ -1,5 +1,12 @@
 package ru.job4j.calculator;
 
+/**
+ * Class Calculator. Класс для вычисления арифметических операций + / * -.
+ * @author yagufarov
+ * @since 07.12.2019
+ * @version 1.0
+ */
+
 public class Calculator {
 
     public static void add(double first, double second) {
@@ -21,6 +28,11 @@ public class Calculator {
         double result = first - second;
         System.out.println(first + " - " + second + " = " + result);
     }
+
+    /**
+     * Method main. Вызывает методы арифметических оперций.
+     * @param args
+     */
 
     public static void main(String[] args) {
         add(1, 1);
