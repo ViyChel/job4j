@@ -9,29 +9,25 @@ package ru.job4j.array;
  */
 
 public class MatrixCheck {
-    static boolean isWin(char[][] board) {
+    public static boolean isWin(char[][] board) {
         boolean result = false;
-        int cellWin = 0;
-        int countVer = 0;
-        for (int row = board.length - 1; row >= 0; row--) {
+        for (int row = 0; row < board.length; row++) {
+            int countVer = 0;
             int countHor = 0;
-            for (int cell = 0; cell < board.length; cell++) {
-                if (board[row][cell] == 'X') {
-                    countHor++;
-                    if (board[row][cell] == board[0][cell]) {
-                        cellWin = cell;
-                        countVer++;
-                    } else if (board[row][cell] == board[row][cellWin]) {
+            if (board[row][row] == 'X') {
+                for (int cell = 0; cell < board.length; cell++) {
+                    if (board[row][cell] == 'X') {
+                        countHor++;
+                    }
+                    if (board[cell][row] == 'X') {
                         countVer++;
                     }
                 }
+                if (countHor == board.length || countVer == board.length) {
+                    result = true;
+                }
+                break;
             }
-            if (countHor == board.length) {
-                result = true;
-            }
-        }
-        if (countVer == board.length) {
-            result = true;
         }
         return result;
     }
