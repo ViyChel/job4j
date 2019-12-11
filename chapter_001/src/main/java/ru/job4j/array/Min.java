@@ -8,7 +8,7 @@ package ru.job4j.array;
  * @since 10.12.2019
  */
 
-public class Min {
+class Min {
 
     /**
      * Method findMin. Ищет минимальное число в массиве.
@@ -16,11 +16,13 @@ public class Min {
      * @param array массив в котором производится поиск.
      * @return возвращаем минимальное число массива.
      */
-    public static int findMin(int[] array) {
+    static int findMin(int[] array) {
         int min = array[0];
-        for (int index = 0; index < array.length; index++) {
+        for (int index = array.length - 1; index >= 0; index--) {
             // проверить, что эталон больше, чем элемент. записать в эталон элемент массива.
-            if (min > array[index]) min = array[index];
+            if (min > array[index]) {
+                min = array[index];
+            }
         }
         return min;
     }

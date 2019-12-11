@@ -1,7 +1,5 @@
 package ru.job4j.array;
 
-import java.util.Arrays;
-
 /**
  * Class MatrixCheck
  *
@@ -11,11 +9,11 @@ import java.util.Arrays;
  */
 
 public class MatrixCheck {
-    public static boolean isWin(char[][] board) {
+    static boolean isWin(char[][] board) {
         boolean result = false;
         int cellWin = 0;
         int countVer = 0;
-        for (int row = 0; row < board.length; row++) {
+        for (int row = board.length - 1; row >= 0; row--) {
             int countHor = 0;
             for (int cell = 0; cell < board.length; cell++) {
                 if (board[row][cell] == 'X') {
@@ -28,9 +26,13 @@ public class MatrixCheck {
                     }
                 }
             }
-            if (countHor == board.length) result = true;
+            if (countHor == board.length) {
+                result = true;
+            }
         }
-        if (countVer == board.length) result = true;
+        if (countVer == board.length) {
+            result = true;
+        }
         return result;
     }
 
