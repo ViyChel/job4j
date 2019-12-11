@@ -73,3 +73,4 @@ build
 .gradle
 *.pid
 
+/chapter_001_exam.txt
