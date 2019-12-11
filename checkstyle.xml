@@ -3,6 +3,7 @@
         "-//Checkstyle//DTD Configuration 1.3//EN"
         "http://checkstyle.sourceforge.net/dtds/configuration_1_3.dtd">
 
+
 <module name="Checker">
 
     <!--Расширение файла должно быть java, properties, xml-->
