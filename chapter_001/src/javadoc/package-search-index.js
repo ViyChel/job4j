@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"ru.job4j.array"},{"l":"ru.job4j.calculator"},{"l":"ru.job4j.condition"},{"l":"ru.job4j.converter"},{"l":"ru.job4j.loop"},{"l":"ru.job4j.sort"}]
