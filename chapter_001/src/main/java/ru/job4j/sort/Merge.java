@@ -20,28 +20,28 @@ public class Merge {
      */
 
     public int[] merge(int[] left, int[] right) {
-        int[] rsl = new int[left.length + right.length];
+        int[] result = new int[left.length + right.length];
         int indexLeft = 0;
         int indexRight = 0;
 
-        while (indexLeft + indexRight != rsl.length) {
+        while (indexLeft + indexRight != result.length) {
             if (indexLeft < left.length && indexRight == right.length) {
-                rsl[indexLeft + indexRight] = left[indexLeft];
+                result[indexLeft + indexRight] = left[indexLeft];
                 indexLeft++;
             } else if (indexRight < right.length && indexLeft == left.length) {
-                rsl[indexLeft + indexRight] = right[indexRight];
+                result[indexLeft + indexRight] = right[indexRight];
                 indexRight++;
             } else {
                 if (left[indexLeft] < right[indexRight]) {
-                    rsl[indexLeft + indexRight] = left[indexLeft];
+                    result[indexLeft + indexRight] = left[indexLeft];
                     indexLeft++;
                 } else {
-                    rsl[indexLeft + indexRight] = right[indexRight];
+                    result[indexLeft + indexRight] = right[indexRight];
                     indexRight++;
                 }
             }
         }
-        return rsl;
+        return result;
     }
 
     /**

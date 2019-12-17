@@ -28,7 +28,6 @@ public class Converter {
         System.out.println("10 euro are " + rubleEuro + " rubles.");
         System.out.println("10 dollars are " + rubleDollar + " rubles.");
 
-        // Tests
         testRubleToEuro();
         testRubleToDollar();
         testEuroToRuble();

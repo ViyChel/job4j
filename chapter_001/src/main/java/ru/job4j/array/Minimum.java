@@ -8,7 +8,7 @@ package ru.job4j.array;
  * @since 10.12.2019
  */
 
-class Min {
+class Minimum {
 
     /**
      * Method findMin. Ищет минимальное число в массиве.

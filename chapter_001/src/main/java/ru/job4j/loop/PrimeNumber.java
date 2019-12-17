@@ -1,7 +1,7 @@
 package ru.job4j.loop;
 
 public class PrimeNumber {
-    public int calc(int finish) {
+    public int calculation(int finish) {
         CheckPrimeNumber checkPrimeNumber = new CheckPrimeNumber();
         int count = 0;
         for (int i = 2; i <= finish; i++) {
