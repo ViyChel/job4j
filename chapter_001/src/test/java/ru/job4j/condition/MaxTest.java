@@ -7,6 +7,19 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class MaxTest {
+
+    @Test
+    public void whenMax1ofThree() {
+        int result = Max.max(9, 2, 7);
+        assertThat(result, is(9));
+    }
+
+    @Test
+    public void whenMax2ofFour() {
+        int result = Max.max(1, 8, 5, 3);
+        assertThat(result, is(8));
+    }
+
     @Test
     public void whenMax1To2Then2() {
         int result = Max.max(1, 2);
