@@ -1,19 +1,19 @@
 package ru.job4j.condition;
 
+import org.junit.Assert;
 import org.junit.Test;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
 
 public class TriangleTest {
-    @Test
-    public void whenExist() {
-        boolean result = Triangle.exist(2.0, 2.0, 2.0);
-        assertThat(result, is(true));
-    }
+
 
     @Test
-    public void whenNotExist() {
-        boolean result = Triangle.exist(3, 3, -1);
-        assertThat(result, is(false));
+    public void whenAreaTriangleTrue() {
+        Point a = new Point(0, 1);
+        Point b = new Point(2, 5);
+        Point c = new Point(5, 0);
+        Triangle triangle = new Triangle(a, b, c);
+        double out = triangle.area();
+        double expected = 10.99999999961102;
+        Assert.assertEquals(expected, out, 0.01);
     }
 }
