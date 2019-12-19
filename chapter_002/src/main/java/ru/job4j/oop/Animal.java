@@ -2,8 +2,9 @@ package ru.job4j.oop;
 
 public class Animal {
 
-    public Animal() {
-        super();
+    private String name;
+
+    public Animal(String name) {
         System.out.println("class Animal");
     }
 }
