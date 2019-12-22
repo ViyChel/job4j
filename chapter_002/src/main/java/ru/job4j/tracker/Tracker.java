@@ -94,4 +94,15 @@ public class Tracker {
         }
         return result;
     }
+
+    public void deleteItemById(String id) {
+        for (int i = 0; i < this.items.length; i++) {
+            if (this.items[i].getId().equals(id)) {
+                this.items[i] = null;
+                break;
+            } else {
+                System.out.println("Item not found");
+            }
+        }
+    }
 }
