@@ -38,36 +38,26 @@ public class Tracker {
     }
 
     /**
-     * Метод findAll() возвращает список всех заявок без null элементов (без пустых клеток).
+     * Метод findAll() возвращает список всех заявок.
      *
-     * @return массив this.items без null элементов
+     * @return массив this.items
      */
     public Item[] findAll() {
-        Item[] result = new Item[position];
-        int size = 0;
-        for (int i = 0; i < result.length; i++) {
-            Item item = this.items[i];
-            if (item != null) {
-                result[size] = item;
-                size++;
-            }
-        }
-        result = Arrays.copyOf(result, size);
-        return result;
+        return Arrays.copyOf(items, position);
     }
 
     /**
      * Метод findByName(String key) для получения списка заявок по имени
      *
-     * @param key имя заявки
+     * @param name имя заявки
      * @return массив this.items с выборкой по имени заявки
      */
-    public Item[] findByName(String key) {
+    public Item[] findByName(String name) {
         Item[] result = new Item[position];
         int size = 0;
-        for (int i = 0; i < result.length; i++) {
+        for (int i = 0; i < position; i++) {
             Item item = this.items[i];
-            if (item.getName().equals(key)) {
+            if (item.getName().equals(name)) {
                 result[size] = item;
                 size++;
             }
@@ -84,25 +74,35 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item result = null;
-        Item[] currentItems = new Item[position];
-        for (int i = 0; i < currentItems.length; i++) {
-            Item item = this.items[i];
-            if (item.getId().equals(id)) {
-                result = item;
-                break;
-            }
+        if (indexOf(id) != -1) {
+            result = items[indexOf(id)];
         }
         return result;
     }
 
-    public void deleteItemById(String id) {
-        for (int i = 0; i < this.items.length; i++) {
-            if (this.items[i].getId().equals(id)) {
-                this.items[i] = null;
+    private int indexOf(String id) {
+        int rsl = -1;
+        for (int index = 0; index < position; index++) {
+            if (items[index].getId().equals(id)) {
+                rsl = index;
                 break;
-            } else {
-                System.out.println("Item not found");
             }
         }
+        return rsl;
+    }
+
+    public void replace(String id, Item item) {
+        int index = indexOf(id);
+        item.setId(items[index].getId());
+        items[index] = item;
+    }
+
+    public void deleteItem(String id) {
+        int start = indexOf(id) + 1;
+        int distPos = indexOf(id);
+        int size = position - indexOf(id);
+        System.arraycopy(items, start, items, distPos, size);
+        items[position] = null;
+        position--;
     }
 }
