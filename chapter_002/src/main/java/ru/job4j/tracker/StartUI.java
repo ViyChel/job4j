@@ -19,13 +19,12 @@ public class StartUI {
     }
 
     public static void replaceItem(Input input, Tracker tracker) {
-        System.out.println("Edit item");
-        System.out.print("Enter Id: ");
-        String id = input.askStr("");
-        System.out.print("Enter new name: ");
-        String newName = input.askStr("");
-        tracker.replace(id, new Item(newName));
-        System.out.println("=== Item was edited ====");
+        System.out.println(" === Update item ====");
+        String id = input.askStr("Enter id:");
+        String name = input.askStr("Enter a new name of item: ");
+        Item item = new Item(name);
+        item.setId(id);
+        tracker.replace(id, item);
     }
 
     public static void deleteItem(Input input, Tracker tracker) {
