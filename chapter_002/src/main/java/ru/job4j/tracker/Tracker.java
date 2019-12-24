@@ -92,15 +92,16 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item result = null;
-        if (indexOf(id) != -1) {
-            result = items[indexOf(id)];
+        int index = indexOf(id);
+        if (index != -1) {
+            result = items[index];
         }
         return result;
     }
 
     public void replace(String id, Item item) {
-        if (indexOf(id) != -1) {
-            int index = indexOf(id);
+        int index = indexOf(id);
+        if (index != -1) {
             item.setId(items[index].getId());
             items[index] = item;
             System.out.println("Item replaced!");
@@ -111,11 +112,11 @@ public class Tracker {
     }
 
     public void deleteItem(String id) {
-        if (indexOf(id) != -1) {
-            int start = indexOf(id) + 1;
-            int distPos = indexOf(id);
-            int size = position - indexOf(id);
-            System.arraycopy(items, start, items, distPos, size);
+        int index = indexOf(id);
+        if (index != -1) {
+            int start = index + 1;
+            int size = position - index;
+            System.arraycopy(items, start, items, index, size);
             items[position] = null;
             position--;
             System.out.println("=== Item was deleted ====");
