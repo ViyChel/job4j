@@ -67,6 +67,24 @@ public class Tracker {
     }
 
     /**
+     * Метод indexOf(String id) ищет индекс массива items, в котором объект с данным id
+     *
+     * @param id идентификатор объекта Item
+     * @return индекс массива items
+     */
+
+    private int indexOf(String id) {
+        int rsl = -1;
+        for (int index = 0; index < position; index++) {
+            if (items[index].getId().equals(id)) {
+                rsl = index;
+                break;
+            }
+        }
+        return rsl;
+    }
+
+    /**
      * Метод findById(String id) для получения заявки по уникальному ключу (id)
      *
      * @param id уникальный ключ заявки
@@ -80,29 +98,29 @@ public class Tracker {
         return result;
     }
 
-    private int indexOf(String id) {
-        int rsl = -1;
-        for (int index = 0; index < position; index++) {
-            if (items[index].getId().equals(id)) {
-                rsl = index;
-                break;
-            }
-        }
-        return rsl;
-    }
-
     public void replace(String id, Item item) {
-        int index = indexOf(id);
-        item.setId(items[index].getId());
-        items[index] = item;
+        if (indexOf(id) != -1) {
+            int index = indexOf(id);
+            item.setId(items[index].getId());
+            items[index] = item;
+            System.out.println("Item replaced!");
+
+        } else {
+            System.out.println("Invalid id of item selected!");
+        }
     }
 
     public void deleteItem(String id) {
-        int start = indexOf(id) + 1;
-        int distPos = indexOf(id);
-        int size = position - indexOf(id);
-        System.arraycopy(items, start, items, distPos, size);
-        items[position] = null;
-        position--;
+        if (indexOf(id) != -1) {
+            int start = indexOf(id) + 1;
+            int distPos = indexOf(id);
+            int size = position - indexOf(id);
+            System.arraycopy(items, start, items, distPos, size);
+            items[position] = null;
+            position--;
+            System.out.println("=== Item was deleted ====");
+        } else {
+            System.out.println("Invalid id of item selected!");
+        }
     }
 }
