@@ -1,18 +1,14 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
 public class Tracker {
     /**
-     * Массив для хранения заявок.
+     * Список для хранения заявок.
      */
-    private final Item[] items = new Item[100];
-
-    /**
-     * Указатель ячейки для новой заявки.
-     */
-    private int position = 0;
+    private final ArrayList<Item> items = new ArrayList<>();
 
     /**
      * Метод добавления заявки в хранилище
@@ -21,7 +17,7 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        items[this.position++] = item;
+        items.add(item);
         return item;
     }
 
@@ -40,43 +36,39 @@ public class Tracker {
     /**
      * Метод findAll() возвращает список всех заявок.
      *
-     * @return массив this.items
+     * @return список this.items
      */
-    public Item[] findAll() {
-        return Arrays.copyOf(items, position);
+    public ArrayList<Item> findAll() {
+        return this.items;
     }
 
     /**
      * Метод findByName(String key) для получения списка заявок по имени
      *
      * @param name имя заявки
-     * @return массив this.items с выборкой по имени заявки
+     * @return список this.items с выборкой по имени заявки
      */
-    public Item[] findByName(String name) {
-        Item[] result = new Item[position];
-        int size = 0;
-        for (int i = 0; i < position; i++) {
-            Item item = this.items[i];
+    public ArrayList<Item> findByName(String name) {
+        ArrayList<Item> result = new ArrayList<>();
+        for (Item item : this.items) {
             if (item.getName().equals(name)) {
-                result[size] = item;
-                size++;
+                result.add(item);
             }
         }
-        result = Arrays.copyOf(result, size);
         return result;
     }
 
     /**
-     * Метод indexOf(String id) ищет индекс массива items, в котором объект с данным id
+     * Метод indexOf(String id) ищет индекс списка items, в котором объект с данным id
      *
      * @param id идентификатор объекта Item
-     * @return индекс массива items
+     * @return индекс списка items
      */
 
     private int indexOf(String id) {
         int rsl = -1;
-        for (int index = 0; index < position; index++) {
-            if (items[index].getId().equals(id)) {
+        for (int index = 0; index < this.items.size(); index++) {
+            if (items.get(index).getId().equals(id)) {
                 rsl = index;
                 break;
             }
@@ -94,7 +86,7 @@ public class Tracker {
         Item result = null;
         int index = indexOf(id);
         if (index != -1) {
-            result = items[index];
+            result = items.get(index);
         }
         return result;
     }
@@ -102,10 +94,9 @@ public class Tracker {
     public void replace(String id, Item item) {
         int index = indexOf(id);
         if (index != -1) {
-            item.setId(items[index].getId());
-            items[index] = item;
+            item.setId(items.get(index).getId());
+            items.set(index, item);
             System.out.println("Item replaced!");
-
         } else {
             System.out.println("Invalid id of item selected!");
         }
@@ -114,11 +105,7 @@ public class Tracker {
     public void deleteItem(String id) {
         int index = indexOf(id);
         if (index != -1) {
-            int start = index + 1;
-            int size = position - index;
-            System.arraycopy(items, start, items, index, size);
-            items[position] = null;
-            position--;
+            this.items.remove(index);
             System.out.println("=== Item was deleted ====");
         } else {
             System.out.println("Invalid id of item selected!");
