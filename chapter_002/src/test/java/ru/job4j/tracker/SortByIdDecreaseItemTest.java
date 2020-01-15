@@ -22,8 +22,8 @@ public class SortByIdDecreaseItemTest {
         item2.setId("4569455487");
         item3.setId("1256");
         item4.setId("-56987");
-        List<Item> items = Arrays.asList(item1,item2,item3,item4);
-        List<Item> expected = Arrays.asList(item2,item1,item3,item4);
+        List<Item> items = Arrays.asList(item1, item2, item3, item4);
+        List<Item> expected = Arrays.asList(item2, item1, item3, item4);
         Collections.sort(items, new SortByIdDecreaseItem());
         assertThat(expected, is(items));
     }

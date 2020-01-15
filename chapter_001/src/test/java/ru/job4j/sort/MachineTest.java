@@ -10,7 +10,7 @@ public class MachineTest {
     private Machine machine;
 
     @Before
-    public void init(){
+    public void init() {
         machine = new Machine();
     }
 

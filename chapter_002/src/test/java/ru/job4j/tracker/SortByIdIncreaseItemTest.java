@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.is;
 
@@ -20,8 +21,8 @@ public class SortByIdIncreaseItemTest {
         item2.setId("4569455487");
         item3.setId("1256");
         item4.setId("-56987");
-        List<Item> items = Arrays.asList(item1,item2,item3,item4);
-        List<Item> expected = Arrays.asList(item4,item3,item1,item2);
+        List<Item> items = Arrays.asList(item1, item2, item3, item4);
+        List<Item> expected = Arrays.asList(item4, item3, item1, item2);
         Collections.sort(items, new SortByIdIncreaseItem());
         assertThat(expected, is(items));
     }
