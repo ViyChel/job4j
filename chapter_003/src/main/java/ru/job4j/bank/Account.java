@@ -43,4 +43,14 @@ public class Account {
     public int hashCode() {
         return Objects.hash(requisite);
     }
+
+    public boolean transfer(Account dest, double amount) {
+        boolean result = false;
+        if (this.balance >= amount) {
+            this.setBalance(this.getBalance() - amount);
+            dest.setBalance(dest.getBalance() + amount);
+            result = true;
+        }
+        return result;
+    }
 }
