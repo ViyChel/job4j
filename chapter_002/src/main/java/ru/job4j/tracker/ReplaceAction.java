@@ -1,6 +1,12 @@
 package ru.job4j.tracker;
 
+import java.util.function.Consumer;
+
 public class ReplaceAction implements UserAction {
+
+    private final Consumer<String> output = s -> {
+    };
+
     @Override
     public String name() {
         return "Edit item";
@@ -15,7 +21,7 @@ public class ReplaceAction implements UserAction {
             item.setId(id);
             tracker.replace(id, item);
         } else {
-            System.out.println("Invalid id of item selected!");
+            output.accept("Invalid id of item selected!");
         }
         return true;
     }
