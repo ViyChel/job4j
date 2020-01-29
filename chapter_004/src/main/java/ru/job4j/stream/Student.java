@@ -1,6 +1,5 @@
 package ru.job4j.stream;
 
-<<<<<<< HEAD
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -13,24 +12,12 @@ public class Student implements Comparable<Student> {
     public Student(String name, int scope) {
         this.name = name;
         this.scope = scope;
-=======
-import java.util.Objects;
-
-public class Student {
-    private String name;
-    private int score;
-
-    public Student(String name, int score) {
-        this.name = name;
-        this.score = score;
->>>>>>> student
     }
 
     public String getName() {
         return name;
     }
 
-<<<<<<< HEAD
     public int getScope() {
         return scope;
     }
@@ -41,10 +28,7 @@ public class Student {
                 .sorted()
                 .takeWhile(student -> student.getScope() > bound)
                 .collect(Collectors.toList());
-=======
-    public int getScore() {
-        return score;
->>>>>>> student
+
     }
 
     @Override
@@ -56,17 +40,11 @@ public class Student {
             return false;
         }
         Student student = (Student) o;
-<<<<<<< HEAD
-        return scope == student.scope
-                && Objects.equals(name, student.name);
-=======
         return Objects.equals(name, student.name);
->>>>>>> student
     }
 
     @Override
     public int hashCode() {
-<<<<<<< HEAD
         return Objects.hash(name, scope);
     }
 
@@ -81,8 +59,5 @@ public class Student {
                 + "name='" + name + '\''
                 + ", scope=" + scope
                 + '}';
-=======
-        return Objects.hash(name);
->>>>>>> student
     }
 }

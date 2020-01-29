@@ -34,7 +34,7 @@ public class SchoolTest {
 
     @Test
     public void whenStudentsScoreRange0to50() {
-        List<Student> result = school.collect(students, s -> s.getScore() > 0 && s.getScore() < 50);
+        List<Student> result = school.collect(students, s -> s.getScope() > 0 && s.getScope() < 50);
         List<Student> expected = List.of(
                 new Student("Semenov", 15),
                 new Student("Orlov", 45),
@@ -44,7 +44,7 @@ public class SchoolTest {
 
     @Test
     public void whenStudentsScoreRange50to70() {
-        List<Student> result = school.collect(students, s -> s.getScore() >= 50 && s.getScore() < 70);
+        List<Student> result = school.collect(students, s -> s.getScope() >= 50 && s.getScope() < 70);
         List<Student> expected = List.of(
                 new Student("Lomov", 65),
                 new Student("Lomov", 66),
@@ -54,7 +54,7 @@ public class SchoolTest {
 
     @Test
     public void whenStudentsScoreRange70to100() {
-        List<Student> result = school.collect(students, s -> s.getScore() >= 70 && s.getScore() <= 100);
+        List<Student> result = school.collect(students, s -> s.getScope() >= 70 && s.getScope() <= 100);
         List<Student> expected = List.of(
                 new Student("Ivanov", 75),
                 new Student("Petrov", 100),
