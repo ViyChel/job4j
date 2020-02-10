@@ -12,7 +12,7 @@ import java.util.Iterator;
  * @version 1.0
  * @since 09.02.2020
  */
-public class SimpleArray<T> implements Iterable {
+public class SimpleArray<T> implements Iterable<T> {
     /**
      * The Array.
      */
