@@ -1,5 +1,6 @@
 package ru.job4j.generic;
 
+import org.jetbrains.annotations.NotNull;
 import ru.job4j.iterator.SimpleIterator;
 
 import java.util.Iterator;
@@ -16,11 +17,11 @@ public class SimpleArray<T> implements Iterable<T> {
     /**
      * The Array.
      */
-    Object[] array;
+    private Object[] array;
     /**
      * The Index.
      */
-    int index = 0;
+    private int index = 0;
 
     /**
      * Instantiates a new Simple array.
@@ -39,9 +40,8 @@ public class SimpleArray<T> implements Iterable<T> {
     public void add(T model) {
         if (array.length == index) {
             throw new IndexOutOfBoundsException();
-        } else {
-            this.array[index++] = model;
         }
+        this.array[index++] = model;
     }
 
     /**
@@ -76,9 +76,10 @@ public class SimpleArray<T> implements Iterable<T> {
         return (T) this.array[index];
     }
 
+    @NotNull
     @Override
-    public Iterator iterator() {
-        return new SimpleIterator<T>(this.array);
+    public Iterator<T> iterator() {
+        return new SimpleIterator<>(this.array);
     }
 }
 
