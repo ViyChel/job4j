@@ -28,15 +28,15 @@ public class SimpleListTest {
         printLower(listA);
     }
 
-    public void print(SimpleList<?> list){
+    public void print(SimpleList<?> list) {
         //
     }
 
-    public void printUpper(SimpleList<? extends B> list){
+    public void printUpper(SimpleList<? extends B> list) {
         //
     }
 
-    public void printLower(SimpleList<? super B> list){
+    public void printLower(SimpleList<? super B> list) {
         //
     }
 

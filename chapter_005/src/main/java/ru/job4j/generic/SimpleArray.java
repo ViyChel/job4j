@@ -1,6 +1,5 @@
 package ru.job4j.generic;
 
-import org.jetbrains.annotations.NotNull;
 import ru.job4j.iterator.SimpleIterator;
 
 import java.util.Iterator;
@@ -76,7 +75,6 @@ public class SimpleArray<T> implements Iterable<T> {
         return (T) this.array[index];
     }
 
-    @NotNull
     @Override
     public Iterator<T> iterator() {
         return new SimpleIterator<>(this.array);
