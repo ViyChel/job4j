@@ -46,11 +46,14 @@ public class SimpleArray<T> implements Iterable<T> {
     /**
      * Set.
      *
-     * @param index the index
-     * @param model the model
+     * @param position the index
+     * @param model    the model
      */
-    public void set(int index, T model) {
-        this.array[index] = model;
+    public void set(int position, T model) {
+        if (position < 0 || position >= this.array.length) {
+            throw new IndexOutOfBoundsException();
+        }
+        this.array[position] = model;
     }
 
     /**
@@ -59,20 +62,27 @@ public class SimpleArray<T> implements Iterable<T> {
      * @param position the index
      */
     public void remove(int position) {
-        if (position < index) {
+        if (position < 0 || position >= this.array.length) {
+            throw new IndexOutOfBoundsException();
+        } else if (position == index - 1) {
+            this.array[index - 1] = null;
+        } else {
             System.arraycopy(this.array, position + 1, this.array, position, index - position - 1);
         }
-        this.array[index - 1] = null;
+        index--;
     }
 
     /**
      * Get element of array.
      *
-     * @param index the index
+     * @param position the index
      * @return the T
      */
-    public T get(int index) {
-        return (T) this.array[index];
+    public T get(int position) {
+        if (position < 0 || position >= this.array.length) {
+            throw new IndexOutOfBoundsException();
+        }
+        return (T) this.array[position];
     }
 
     @Override
