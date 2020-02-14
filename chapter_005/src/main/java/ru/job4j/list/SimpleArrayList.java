@@ -32,14 +32,23 @@ public class SimpleArrayList<E> implements Iterable<E> {
     public void add(E value) {
         modCount++;
         if (size == capacity - 1) {
-            this.capacity = (int) Math.round(capacity * 1.5) + 1;
-            Object[] tempContainer = this.container;
-            this.container = new Object[this.capacity];
-            System.arraycopy(tempContainer, 0, this.container, 0, tempContainer.length);
+            createArrayList(this.container);
             this.container[size++] = value;
         } else {
             this.container[size++] = value;
         }
+    }
+
+    /**
+     * Create array list.
+     *
+     * @param list the list
+     */
+    public void createArrayList(Object[] list) {
+        this.capacity = (int) Math.round(capacity * 1.5) + 1;
+        Object[] tempContainer = this.container;
+        this.container = new Object[this.capacity];
+        System.arraycopy(tempContainer, 0, this.container, 0, tempContainer.length);
     }
 
     /**
