@@ -33,5 +33,9 @@ public class SimpleStack<T> {
     public void push(T value) {
         list.add(value);
     }
+
+    public int getSize() {
+        return this.list.getSize();
+    }
 }
 
