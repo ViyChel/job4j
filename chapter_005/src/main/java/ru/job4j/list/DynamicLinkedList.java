@@ -1,7 +1,5 @@
 package ru.job4j.list;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -63,7 +61,6 @@ public class DynamicLinkedList<E> implements Iterable<E> {
         return this.size;
     }
 
-    @NotNull
     @Override
     public Iterator<E> iterator() {
         return new Itr();
