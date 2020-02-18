@@ -3,7 +3,6 @@ package ru.job4j.generic;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.is;
 
@@ -48,14 +47,20 @@ public class SimpleArrayTest {
         list.add(4);
         list.remove(3);
         Integer result1 = list.get(1);
-        Integer result3 = list.get(3);
+        Integer result3 = list.get(2);
         assertThat(result1, is(2));
-        assertThat(result3, is(nullValue()));
+        assertThat(result3, is(3));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void whenGetElementMoreThanLengthArray() {
         list.add(12);
         Integer result = list.get(4);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void whenSetElementMoreThanElementsOfArray() {
+        list.add(12);
+        list.set(1, 15);
     }
 }
