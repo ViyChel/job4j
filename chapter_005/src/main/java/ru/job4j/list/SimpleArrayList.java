@@ -90,7 +90,7 @@ public class SimpleArrayList<E> implements Iterable<E> {
 
         @Override
         public boolean hasNext() {
-            return container.length > index;
+            return getSize() > this.index;
         }
 
         @Override
