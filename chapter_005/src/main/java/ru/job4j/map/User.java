@@ -95,5 +95,10 @@ public class User {
                 && Objects.equals(name, user.name)
                 && Objects.equals(birthday, user.birthday);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children, birthday);
+    }
 }
 
