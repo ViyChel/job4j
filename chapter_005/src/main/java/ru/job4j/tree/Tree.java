@@ -35,4 +35,23 @@ class Tree<E> implements SimpleTree<E> {
         }
         return rsl;
     }
+
+    public boolean isBinary() {
+        return checkBinary(root);
+    }
+
+    private boolean checkBinary(Node<E> node) {
+        boolean result = true;
+        if (node.children.size() < 3) {
+            for (Node<E> el : node.children) {
+                if (!checkBinary(el)) {
+                    result = false;
+                    break;
+                }
+            }
+        } else {
+            result = false;
+        }
+        return result;
+    }
 }
