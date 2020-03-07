@@ -37,20 +37,17 @@ class Tree<E> implements SimpleTree<E> {
     }
 
     public boolean isBinary() {
-        return checkBinary(root);
-    }
-
-    private boolean checkBinary(Node<E> node) {
         boolean result = true;
-        if (node.children.size() < 3) {
-            for (Node<E> el : node.children) {
-                if (!checkBinary(el)) {
-                    result = false;
-                    break;
-                }
+        Queue<Node<E>> data = new LinkedList<>();
+        data.offer(this.root);
+        while (!data.isEmpty()) {
+            Node<E> el = data.poll();
+            System.out.println(el.value);
+            if (el.children.size() > 2) {
+                result = false;
+                break;
             }
-        } else {
-            result = false;
+            data.addAll(el.children);
         }
         return result;
     }
