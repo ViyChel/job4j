@@ -16,12 +16,14 @@ public class EchoServer {
                     while (!(str = in.readLine()).isEmpty()) {
                         System.out.println(str);
                         if (str.startsWith("GET") && str.contains("msg=Hello")) {
+                            out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                             out.write("Hello\r\n".getBytes());
                             break;
                         } else if (str.startsWith("GET") && str.contains("msg=Exit")) {
                             return;
                         }
                         String answer = str.substring(str.lastIndexOf("=") + 1, str.indexOf(" HTTP")) + "\r\n";
+                        out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                         out.write(answer.getBytes());
                         break;
                     }
