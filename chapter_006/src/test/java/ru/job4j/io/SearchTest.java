@@ -28,6 +28,6 @@ public class SearchTest {
         for (File f : expected) {
             listFiles = listFiles + f.getName() + " ";
         }
-        assertEquals(listFiles, "file1.abc file2.abc ");
+        assertEquals(listFiles, "file2.abc file1.abc ");
     }
 }

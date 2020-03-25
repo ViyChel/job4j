@@ -32,7 +32,7 @@ public class ZipTest {
         Zip zip = new Zip();
         List<File> listToZip = zip.seekBy(arguments.getDirectory(), arguments.getExcule());
         zip.pack(listToZip, new File(arguments.getOutput()));
-        assertEquals(readingArchive(arguments.getOutput()), "/tmp/test/file3.deb");
+        assertEquals(readingArchive(arguments.getOutput()), "/tmp/test/project.zip");
 
     }
 
