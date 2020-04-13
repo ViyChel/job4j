@@ -1,4 +1,4 @@
-package ru.job4j.principle_004;
+package ru.job4j.principle004;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
