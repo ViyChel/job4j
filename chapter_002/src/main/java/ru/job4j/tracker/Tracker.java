@@ -94,25 +94,38 @@ public class Tracker implements ITracker {
     }
 
     @Override
+<<<<<<< HEAD
     public void replace(String id, Item item) {
+=======
+    public boolean replace(String id, Item item) {
+        boolean result = false;
+>>>>>>> tracker
         int index = indexOf(id);
         if (index != -1) {
             item.setId(items.get(index).getId());
             items.set(index, item);
             System.out.println("Item replaced!");
+            result = true;
         } else {
             System.out.println("Invalid id of item selected!");
         }
+        return result;
     }
 
     @Override
+<<<<<<< HEAD
     public void deleteItem(String id) {
+=======
+    public boolean deleteItem(String id) {
+        boolean result = false;
+>>>>>>> tracker
         int index = indexOf(id);
         if (index != -1) {
-            this.items.remove(index);
+            result = this.items.remove(index) != null;
             System.out.println("=== Item was deleted ====");
         } else {
             System.out.println("Invalid id of item selected!");
         }
+        return result;
     }
 }

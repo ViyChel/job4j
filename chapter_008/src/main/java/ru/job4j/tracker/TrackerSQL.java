@@ -11,6 +11,10 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * Class Tracker.
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> tracker
  * @author Vitaly Yagufarov (for.viy@gmail.com)
  * @version 1.0
  * @since 16.04.2020
@@ -39,6 +43,10 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     /**
      * Method init.
      * Creates a database connection. If the items table is not created, it creates it.
+<<<<<<< HEAD
+=======
+     *
+>>>>>>> tracker
      * @return the boolean
      */
     public boolean init() {
@@ -94,6 +102,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         return item;
     }
 
+<<<<<<< HEAD
     @Override
     public void replace(String id, Item item) {
         if (findById(id) != null) {
@@ -119,11 +128,43 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
         }
+=======
+
+    @Override
+    public boolean replace(String id, Item item) {
+        boolean result = false;
+        try (PreparedStatement st = connection.prepareStatement(QUERY_REPLACE)) {
+            st.setString(1, item.getName());
+            st.setInt(2, item.getUserId());
+            st.setString(3, item.getCategory());
+            st.setInt(4, Integer.parseInt(id));
+            result = st.executeUpdate() > 0;
+        } catch (SQLException e) {
+            LOG.error(e.getMessage(), e);
+        }
+        return result;
+    }
+
+    @Override
+    public boolean deleteItem(String id) {
+        boolean result = false;
+        try (PreparedStatement st = connection.prepareStatement(QUERY_DELETE)) {
+            st.setInt(1, Integer.parseInt(id));
+            result = st.executeUpdate() > 0;
+        } catch (SQLException e) {
+            LOG.error(e.getMessage(), e);
+        }
+        return result;
+>>>>>>> tracker
     }
 
     /**
      * Method deleteAll.
      * Removes all items from a table.
+<<<<<<< HEAD
+=======
+     *
+>>>>>>> tracker
      * @param table the table
      */
     public void deleteAll(String table) {
