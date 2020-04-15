@@ -12,7 +12,7 @@ public class FindAllAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, ITracker tracker) {
         for (Item item : tracker.findAll()) {
             output.accept(String.format("%s %s", item.getId(), item.getName()));
         }

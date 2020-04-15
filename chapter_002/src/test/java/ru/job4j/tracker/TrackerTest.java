@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class TrackerTest {
 
@@ -68,7 +69,8 @@ public class TrackerTest {
         tracker.add(bug);
         tracker.add(bug2);
         String id = bug.getId();
-        tracker.deleteItem(id);
+        boolean expected = tracker.deleteItem(id);
+        assertTrue(expected);
         assertThat(tracker.findById(id), is(nullValue()));
     }
 }

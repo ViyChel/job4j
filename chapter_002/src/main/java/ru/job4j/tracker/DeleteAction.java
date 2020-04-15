@@ -7,7 +7,7 @@ public class DeleteAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, ITracker tracker) {
         String id = input.askStr("Enter Id: ");
         tracker.deleteItem(id);
         return true;

@@ -1,12 +1,9 @@
 package ru.job4j.tracker;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.StringJoiner;
 import java.util.function.Consumer;
 
 import static org.hamcrest.core.Is.is;
@@ -16,7 +13,7 @@ import static org.hamcrest.Matchers.nullValue;
 public class StartUITest {
 
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
-    private final Consumer<String> output = new Consumer<String>() {
+    private final Consumer<String> output = new Consumer<>() {
         private final PrintStream stdout = new PrintStream(out);
 
         @Override

@@ -3,10 +3,8 @@ package ru.job4j.tracker;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Tracker {
-    /**
-     * Список для хранения заявок.
-     */
+public class Tracker implements ITracker {
+
     private final ArrayList<Item> items = new ArrayList<>();
 
     /**
@@ -14,6 +12,7 @@ public class Tracker {
      *
      * @param item новая заявка
      */
+    @Override
     public Item add(Item item) {
         item.setId(this.generateId());
         items.add(item);
@@ -37,6 +36,7 @@ public class Tracker {
      *
      * @return список this.items
      */
+    @Override
     public ArrayList<Item> findAll() {
         return this.items;
     }
@@ -47,6 +47,7 @@ public class Tracker {
      * @param name имя заявки
      * @return список this.items с выборкой по имени заявки
      */
+    @Override
     public ArrayList<Item> findByName(String name) {
         ArrayList<Item> result = new ArrayList<>();
         for (Item item : this.items) {
@@ -81,6 +82,8 @@ public class Tracker {
      * @param id уникальный ключ заявки
      * @return заявка с искомым id
      */
+
+    @Override
     public Item findById(String id) {
         Item result = null;
         int index = indexOf(id);
@@ -90,24 +93,31 @@ public class Tracker {
         return result;
     }
 
-    public void replace(String id, Item item) {
+    @Override
+    public boolean replace(String id, Item item) {
+        boolean result = false;
         int index = indexOf(id);
         if (index != -1) {
             item.setId(items.get(index).getId());
             items.set(index, item);
             System.out.println("Item replaced!");
+            result = true;
         } else {
             System.out.println("Invalid id of item selected!");
         }
+        return result;
     }
 
-    public void deleteItem(String id) {
+    @Override
+    public boolean deleteItem(String id) {
+        boolean result = false;
         int index = indexOf(id);
         if (index != -1) {
-            this.items.remove(index);
+            result = this.items.remove(index) != null;
             System.out.println("=== Item was deleted ====");
         } else {
             System.out.println("Invalid id of item selected!");
         }
+        return result;
     }
 }
