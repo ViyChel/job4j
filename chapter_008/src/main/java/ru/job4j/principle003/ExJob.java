@@ -1,11 +1,11 @@
 package ru.job4j.principle003;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ExJob {
 
-    private static final Logger LOG = LogManager.getLogger(ExJob.class.getName());
+    private static final Logger LOG = LoggerFactory.getLogger(ExJob.class.getName());
 
     public static void main(String[] args) {
         int version = 1;

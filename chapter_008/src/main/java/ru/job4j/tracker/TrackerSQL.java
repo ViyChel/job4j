@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Class Tracker.
@@ -17,7 +17,7 @@ import org.apache.logging.log4j.Logger;
  * @since 16.04.2020
  */
 public class TrackerSQL implements ITracker, AutoCloseable {
-    private static final Logger LOG = LogManager.getLogger(TrackerSQL.class.getName());
+    private static final Logger LOG = LoggerFactory.getLogger(TrackerSQL.class.getName());
     private static final String QUERY_ADD = "INSERT INTO items (name, users_id, categories_category, state_status) VALUES (?, ?, ?, ?);";
     private static final String QUERY_FIND_BY_ID = "SELECT * FROM items WHERE id = ?;";
     private static final String QUERY_FIND_BY_NAME = "SELECT * FROM items WHERE name = ?;";
