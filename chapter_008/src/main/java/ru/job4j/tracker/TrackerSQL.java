@@ -37,6 +37,10 @@ public class TrackerSQL implements ITracker, AutoCloseable {
 
     private Connection connection;
 
+    public TrackerSQL(Connection connection) {
+        this.connection = connection;
+    }
+
     /**
      * Method init.
      * Creates a database connection. If the items table is not created, it creates it.

@@ -4,22 +4,51 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Properties;
 
 import static org.hamcrest.Matchers.is;
 
 public class TrackerSQLTest {
 
+    public Connection init() {
+        try (InputStream in = TrackerSQL.class.getClassLoader().getResourceAsStream("app.properties")) {
+            Properties config = new Properties();
+            config.load(in);
+            Class.forName(config.getProperty("driver-class-name"));
+            return DriverManager.getConnection(
+                    config.getProperty("url"),
+                    config.getProperty("username"),
+                    config.getProperty("password")
+
+            );
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
     @Test
-    public void checkConnection() {
-        TrackerSQL sql = new TrackerSQL();
+    public void createItem() throws SQLException {
+        try (TrackerSQL tracker = new TrackerSQL(ConnectionRollback.create(this.init()))) {
+            tracker.add(new Item("name", 1, "info"));
+            assertThat(tracker.findByName("name").size(), is(1));
+        }
+    }
+
+    @Test
+    public void checkConnection() throws SQLException {
+        TrackerSQL sql = new TrackerSQL(ConnectionRollback.create(this.init()));
         assertThat(sql.init(), is(true));
         sql.close();
     }
 
     @Test
-    public void whenInsertNewItem() {
-        TrackerSQL sql = new TrackerSQL();
+    public void whenInsertNewItem() throws SQLException {
+        TrackerSQL sql = new TrackerSQL(ConnectionRollback.create(this.init()));
         sql.init();
         Item item = sql.add(new Item("A pass to the company", 1, "access"));
         Item expected = sql.findById(item.getId());
@@ -29,8 +58,8 @@ public class TrackerSQLTest {
     }
 
     @Test
-    public void whenDeleteItem() {
-        TrackerSQL sql = new TrackerSQL();
+    public void whenDeleteItem() throws SQLException {
+        TrackerSQL sql = new TrackerSQL(ConnectionRollback.create(this.init()));
         sql.init();
         Item item = sql.add(new Item("Removal test", 1, "error"));
         sql.deleteItem(item.getId());
@@ -39,8 +68,8 @@ public class TrackerSQLTest {
     }
 
     @Test
-    public void whenFindByIdItem() {
-        TrackerSQL sql = new TrackerSQL();
+    public void whenFindByIdItem() throws SQLException {
+        TrackerSQL sql = new TrackerSQL(ConnectionRollback.create(this.init()));
         sql.init();
         Item item = sql.add(new Item("Search Testing", 1, "error"));
         Item expected = sql.findById(item.getId());
@@ -50,8 +79,8 @@ public class TrackerSQLTest {
     }
 
     @Test
-    public void whenFindByNameItem() {
-        TrackerSQL sql = new TrackerSQL();
+    public void whenFindByNameItem() throws SQLException {
+        TrackerSQL sql = new TrackerSQL(ConnectionRollback.create(this.init()));
         sql.init();
         Item item1 = sql.add(new Item("Search by name", 1, "info"));
         Item item2 = sql.add(new Item("Search by name", 2, "error"));
@@ -65,8 +94,8 @@ public class TrackerSQLTest {
     }
 
     @Test
-    public void whenFindAllItem() {
-        TrackerSQL sql = new TrackerSQL();
+    public void whenFindAllItem() throws SQLException {
+        TrackerSQL sql = new TrackerSQL(ConnectionRollback.create(this.init()));
         sql.init();
         sql.deleteAll("items");
         Item item1 = sql.add(new Item("Search by all", 1, "info"));
@@ -79,8 +108,8 @@ public class TrackerSQLTest {
     }
 
     @Test
-    public void whenReplaceItem() {
-        TrackerSQL sql = new TrackerSQL();
+    public void whenReplaceItem() throws SQLException {
+        TrackerSQL sql = new TrackerSQL(ConnectionRollback.create(this.init()));
         sql.init();
         Item item1 = sql.add(new Item("New item", 2, "error"));
         String id = item1.getId();
