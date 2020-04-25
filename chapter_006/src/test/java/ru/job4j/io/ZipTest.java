@@ -27,8 +27,6 @@ public class ZipTest {
     @Test
     public void whenAddToArchiveFile3() throws IOException {
         new File(dir, "file1.java").createNewFile();
-        new File(dir, "file2.iml").createNewFile();
-        new File(dir, "file3.deb").createNewFile();
         Zip zip = new Zip();
         List<File> listToZip = zip.seekBy(arguments.getDirectory(), arguments.getExcule());
         zip.pack(listToZip, new File(arguments.getOutput()));
