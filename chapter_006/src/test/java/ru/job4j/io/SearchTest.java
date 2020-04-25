@@ -19,15 +19,10 @@ public class SearchTest {
     public void printFiles() throws IOException {
         String path = System.getProperty("java.io.tmpdir");
         folder.newFile("file1.abc");
-        folder.newFile("file2.abc");
-        folder.newFile("file3.deb");
         Search search = new Search();
         File sourceFile = new File(path);
-        List<File> expected = search.files(sourceFile.getAbsolutePath(), s -> s.endsWith(".abc"));
-        String listFiles = "";
-        for (File f : expected) {
-            listFiles = listFiles + f.getName() + " ";
-        }
-        assertEquals(listFiles, "file2.abc file1.abc ");
+        List<File> list = search.files(sourceFile.getAbsolutePath(), s -> s.endsWith(".abc"));
+        String expected = list.get(0).getName();
+        assertEquals(expected, "file1.abc");
     }
 }
