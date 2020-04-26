@@ -3,6 +3,7 @@ package ru.job4j.io;
 import java.io.*;
 import java.util.*;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 /**
@@ -30,6 +31,19 @@ public class Zip {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public List<String> unpack(String dir) {
+        List<String> result = new ArrayList<>();
+        try (ZipInputStream zin = new ZipInputStream(new FileInputStream(dir))) {
+            ZipEntry entry;
+            while ((entry = zin.getNextEntry()) != null) {
+                result.add(entry.getName());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     /**
