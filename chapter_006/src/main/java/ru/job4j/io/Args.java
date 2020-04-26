@@ -18,7 +18,9 @@ public class Args {
 
     /**
      * Instantiates a new Args.
-     *
+     * -d - directory - которую мы хотим архивировать
+     * -e - exclude - исключить файлы *.xml
+     * -o - output - во что мы архивируем.
      * @param args the args
      */
     public Args(String[] args) {
