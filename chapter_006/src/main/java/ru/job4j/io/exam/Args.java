@@ -1,8 +1,5 @@
 package ru.job4j.io.exam;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Class Args
  *
@@ -11,12 +8,11 @@ import java.util.Set;
  * @since 20.03.2020
  */
 public class Args {
+    private String[] args;
     private String directory;
     private String template;
-    private Set<String> exclude = new HashSet<>();
-    private String output;
-    private boolean mask;
-    private boolean fullName;
+    private Output output;
+    private String type;
 
     /**
      * Instantiates a new Args.
@@ -24,18 +20,21 @@ public class Args {
      * @param args the args
      */
     public Args(String[] args) {
-        for (int i = 0; i < args.length; i++) {
-            if (args[i].equals("-d")) {
-                this.directory = args[++i];
-            } else if (args[i].equals("-n")) {
-                this.template = args[++i];
-            } else if (args[i].equals("-m")) {
-                this.mask = true;
-            } else if (args[i].equals("-f")) {
-                this.fullName = true;
-            } else if (args[i].equals("-o")) {
-                this.output = args[i + 1];
-            }
+        this.args = args;
+    }
+
+    /**
+     * Init.
+     */
+    public void init() {
+        if (args.length == 7 && args[0].equals("-d") && args[2].equals("-n") && args[5].equals("-o")) {
+            this.directory = args[1];
+            this.template = args[3];
+            this.type = args[4];
+            this.output = new FileOutput(args[6]);
+        } else {
+            throw new IllegalArgumentException("Invalid args count! Try again, e.g. java -jar find.jar -d c:/ -n *"
+                    + ".txt -m -o log.txt");
         }
     }
 
@@ -49,20 +48,11 @@ public class Args {
     }
 
     /**
-     * Gets excule.
-     *
-     * @return the excule
-     */
-    public Set<String> getExcule() {
-        return exclude;
-    }
-
-    /**
      * Gets output.
      *
      * @return the output
      */
-    public String getOutput() {
+    public Output getOutput() {
         return output;
     }
 
@@ -76,21 +66,12 @@ public class Args {
     }
 
     /**
-     * Is mask boolean.
+     * Gets type.
      *
-     * @return the boolean
+     * @return the type
      */
-    public boolean isMask() {
-        return mask;
-    }
-
-    /**
-     * Is full name boolean.
-     *
-     * @return the boolean
-     */
-    public boolean isFullName() {
-        return fullName;
+    public String getType() {
+        return type;
     }
 }
 
