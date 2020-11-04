@@ -4,8 +4,7 @@ import java.util.function.Consumer;
 
 public class ReplaceAction implements UserAction {
 
-    private final Consumer<String> output = s -> {
-    };
+    private final Consumer<String> output = System.out::println;
 
     @Override
     public String name() {

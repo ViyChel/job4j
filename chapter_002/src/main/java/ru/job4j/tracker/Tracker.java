@@ -94,12 +94,8 @@ public class Tracker implements ITracker {
     }
 
     @Override
-<<<<<<< HEAD
-    public void replace(String id, Item item) {
-=======
     public boolean replace(String id, Item item) {
         boolean result = false;
->>>>>>> tracker
         int index = indexOf(id);
         if (index != -1) {
             item.setId(items.get(index).getId());
@@ -113,12 +109,8 @@ public class Tracker implements ITracker {
     }
 
     @Override
-<<<<<<< HEAD
-    public void deleteItem(String id) {
-=======
     public boolean deleteItem(String id) {
         boolean result = false;
->>>>>>> tracker
         int index = indexOf(id);
         if (index != -1) {
             result = this.items.remove(index) != null;

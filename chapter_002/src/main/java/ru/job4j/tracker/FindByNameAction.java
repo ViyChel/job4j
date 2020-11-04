@@ -14,15 +14,17 @@ public class FindByNameAction implements UserAction {
 
     @Override
     public boolean execute(Input input, ITracker tracker) {
+        boolean result = false;
         String name = input.askStr("Enter name: ");
-        List<Item> result = tracker.findByName(name);
-        if (result.size() > 0) {
-            for (Item item : result) {
+        List<Item> items = tracker.findByName(name);
+        if (items.size() > 0) {
+            for (Item item : items) {
                 output.accept(item.getId() + " " + item.getName());
+                result = true;
             }
         } else {
             output.accept("Items not found!");
         }
-        return true;
+        return result;
     }
 }

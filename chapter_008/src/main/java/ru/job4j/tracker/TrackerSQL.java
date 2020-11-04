@@ -11,17 +11,16 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Class Tracker.
-<<<<<<< HEAD
-=======
+ * <p>
  *
->>>>>>> tracker
  * @author Vitaly Yagufarov (for.viy@gmail.com)
  * @version 1.0
  * @since 16.04.2020
  */
 public class TrackerSQL implements ITracker, AutoCloseable {
     private static final Logger LOG = LoggerFactory.getLogger(TrackerSQL.class.getName());
-    private static final String QUERY_ADD = "INSERT INTO items (name, users_id, categories_category, state_status) VALUES (?, ?, ?, ?);";
+    private static final String QUERY_ADD = "INSERT INTO items (name, users_id, categories_category, state_status) "
+            + "VALUES (?, ?, ?, ?);";
     private static final String QUERY_FIND_BY_ID = "SELECT * FROM items WHERE id = ?;";
     private static final String QUERY_FIND_BY_NAME = "SELECT * FROM items WHERE name = ?;";
     private static final String QUERY_FIND_ALL = "SELECT * FROM items;";
@@ -47,10 +46,8 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     /**
      * Method init.
      * Creates a database connection. If the items table is not created, it creates it.
-<<<<<<< HEAD
-=======
+     * <p>
      *
->>>>>>> tracker
      * @return the boolean
      */
     public boolean init() {
@@ -106,34 +103,6 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         return item;
     }
 
-<<<<<<< HEAD
-    @Override
-    public void replace(String id, Item item) {
-        if (findById(id) != null) {
-            try (PreparedStatement st = connection.prepareStatement(QUERY_REPLACE)) {
-                st.setString(1, item.getName());
-                st.setInt(2, item.getUserId());
-                st.setString(3, item.getCategory());
-                st.setInt(4, Integer.parseInt(id));
-                st.executeUpdate();
-            } catch (SQLException e) {
-                LOG.error(e.getMessage(), e);
-            }
-        } else {
-            System.out.println("Item not found!");
-        }
-    }
-
-    @Override
-    public void deleteItem(String id) {
-        try (PreparedStatement st = connection.prepareStatement(QUERY_DELETE)) {
-            st.setInt(1, Integer.parseInt(id));
-            st.executeUpdate();
-        } catch (SQLException e) {
-            LOG.error(e.getMessage(), e);
-        }
-=======
-
     @Override
     public boolean replace(String id, Item item) {
         boolean result = false;
@@ -159,16 +128,13 @@ public class TrackerSQL implements ITracker, AutoCloseable {
             LOG.error(e.getMessage(), e);
         }
         return result;
->>>>>>> tracker
     }
 
     /**
      * Method deleteAll.
      * Removes all items from a table.
-<<<<<<< HEAD
-=======
+     * <p>
      *
->>>>>>> tracker
      * @param table the table
      */
     public void deleteAll(String table) {
