@@ -19,14 +19,14 @@ import org.slf4j.LoggerFactory;
  */
 public class TrackerSQL implements ITracker, AutoCloseable {
     private static final Logger LOG = LoggerFactory.getLogger(TrackerSQL.class.getName());
-    private static final String QUERY_ADD = "INSERT INTO items (name, users_id, categories_category, state_status) "
+    private static final String QUERY_ADD = "INSERT INTO items (name, userid, category, status) "
             + "VALUES (?, ?, ?, ?);";
     private static final String QUERY_FIND_BY_ID = "SELECT * FROM items WHERE id = ?;";
     private static final String QUERY_FIND_BY_NAME = "SELECT * FROM items WHERE name = ?;";
     private static final String QUERY_FIND_ALL = "SELECT * FROM items;";
     private static final String QUERY_DELETE = "DELETE FROM items WHERE id = ?;";
     private static final String QUERY_REPLACE =
-            "UPDATE items SET  name = ?, users_id = ?, categories_category = ? WHERE id = ?;";
+            "UPDATE items SET  name = ?, userid = ?, category = ? WHERE id = ?;";
     private static final String QUERY_CREATE_TABLE =
             "CREATE TABLE IF NOT EXISTS items ("
                     + "id serial primary key, "
