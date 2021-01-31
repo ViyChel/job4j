@@ -71,7 +71,7 @@ public class Chat {
 
     private String botAnswer(List<String> list) {
         int countWords = (int) (Math.random() * 10);
-        int cellNumber = (int) (Math.random() * list.size() - 10);
+        int cellNumber = (int) (Math.random() * (list.size() - 10));
         StringBuilder result = new StringBuilder(list.get(cellNumber));
         for (int i = cellNumber + 1; i < cellNumber + countWords; i++) {
             result.append(" ").append(list.get(i));

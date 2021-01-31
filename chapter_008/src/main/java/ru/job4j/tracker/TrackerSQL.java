@@ -31,11 +31,11 @@ public class TrackerSQL implements ITracker, AutoCloseable {
             "CREATE TABLE IF NOT EXISTS items ("
                     + "id serial primary key, "
                     + "name varchar(500), "
-                    + "create_time timestamp default now(), "
-                    + "close_time timestamp, "
-                    + "users_id int references users(id), "
-                    + "categories_category varchar references categories(category), "
-                    + "state_status varchar references state(status));";
+                    + "createtime timestamp default now(), "
+                    + "closetime timestamp, "
+                    + "userid int references users(id), "
+                    + "category varchar references categories(category), "
+                    + "status varchar references state(status));";
 
     private Connection connection;
 
@@ -202,11 +202,11 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         Item item;
         String idItem = rs.getString("id");
         String nameItem = rs.getString("name");
-        Timestamp createTimeItem = rs.getTimestamp("create_time");
-        Timestamp closeTimeItem = rs.getTimestamp("close_time");
-        Integer userID = rs.getInt("users_id");
-        String category = rs.getString("categories_category");
-        String status = rs.getString("state_status");
+        Timestamp createTimeItem = rs.getTimestamp("createtime");
+        Timestamp closeTimeItem = rs.getTimestamp("closetime");
+        Integer userID = rs.getInt("userid");
+        String category = rs.getString("category");
+        String status = rs.getString("status");
         item = new Item(nameItem, userID, category);
         item.setId(idItem);
         item.setCreateTime(createTimeItem);
