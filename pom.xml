@@ -53,6 +53,7 @@
         <module>chapter_007</module>
         <module>chapter_008</module>
         <module>hibernate</module>
+        <module>spring</module>
     </modules>
 
     <properties>
