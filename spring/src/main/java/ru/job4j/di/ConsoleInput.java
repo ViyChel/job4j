@@ -1,5 +1,6 @@
 package ru.job4j.di;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
@@ -12,6 +13,7 @@ import java.util.Scanner;
  * @since 01.02.2021
  */
 @Component
+@Scope("prototype")
 public class ConsoleInput {
     private Scanner scanner = new Scanner(System.in);
 
