@@ -8,6 +8,7 @@ import java.util.Properties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.job4j.tracker.react.Observe;
 
 /**
  * Class Tracker.
@@ -152,6 +153,21 @@ public class TrackerSQL implements ITracker, AutoCloseable {
              ResultSet rs = st.executeQuery()) {
             while (rs.next()) {
                 result.add(createItem(rs));
+            }
+        } catch (SQLException e) {
+            LOG.error(e.getMessage(), e);
+        }
+        return result;
+    }
+
+    public List<Item> findAllReact(Observe<Item> observe) {
+        List<Item> result = new ArrayList<>();
+        try (PreparedStatement st = connection.prepareStatement(QUERY_FIND_ALL);
+             ResultSet rs = st.executeQuery()) {
+            while (rs.next()) {
+                Item item = createItem(rs);
+                observe.receive(item);
+                result.add(item);
             }
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
